@@ -1,17 +1,15 @@
-function success(res, data = {}, status = 200) {
-  return res.status(status).json({
+export function success(res, data = {}) {
+  return res.status(200).json({
     success: true,
     data,
     timestamp: new Date().toISOString()
   });
 }
 
-function error(res, message = "Internal error", status = 500) {
-  return res.status(status).json({
+export function error(res, message = "Internal Server Error") {
+  return res.status(500).json({
     success: false,
     error: message,
     timestamp: new Date().toISOString()
   });
 }
-
-module.exports = { success, error };
