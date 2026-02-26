@@ -1,4 +1,4 @@
-export function success(res, data = {}, status = 200) {
+function success(res, data = {}, status = 200) {
   return res.status(status).json({
     success: true,
     data,
@@ -6,10 +6,12 @@ export function success(res, data = {}, status = 200) {
   });
 }
 
-export function error(res, message = "Internal error", status = 500) {
+function error(res, message = "Internal error", status = 500) {
   return res.status(status).json({
     success: false,
     error: message,
     timestamp: new Date().toISOString()
   });
 }
+
+module.exports = { success, error };
