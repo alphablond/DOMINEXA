@@ -1,15 +1,9 @@
-export default function handler(req, res) {
-  if (req.method !== "GET") {
-    return res.status(405).json({
-      error: "Method not allowed"
-    });
-  }
+import { success } from "../utils/response.js";
 
-  return res.status(200).json({
-    api: "v1",
-    status: "operational",
-    service: "DOMINEXA",
-    uptime: process.uptime(),
-    timestamp: new Date().toISOString()
+export default function handler(req, res) {
+  return success(res, {
+    service: "Dominexa API",
+    version: "v1",
+    status: "operational"
   });
 }
