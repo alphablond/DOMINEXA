@@ -1,23 +1,13 @@
-export default function handler(req, res) {
-  const { method, query } = req;
+const express = require("express");
+const { success, error } = require("./utils/response");
 
-  if (method !== "GET") {
-    return res.status(405).json({
-      error: "Method not allowed"
-    });
-  }
+const app = express();
+const port = process.env.PORT || 3000;
 
-  const version = query.version || "v1";
+app.get("/api/v1/status", (req, res) => {
+  success(res, { message: "System operational" });
+});
 
-  if (version === "v1") {
-    return res.status(200).json({
-      message: "Gateway routing to v1",
-      endpoint: "/api/v1/status",
-      timestamp: new Date().toISOString()
-    });
-  }
-
-  return res.status(400).json({
-    error: "Invalid API version"
-  });
-}
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
