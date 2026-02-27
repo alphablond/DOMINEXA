@@ -1,4 +1,4 @@
-import { success, error } from '../utils/response.js';
+import { success, error } from '../utils/response'; 
 
 export default async function handler(req, res) {
     try {
@@ -10,11 +10,11 @@ export default async function handler(req, res) {
                 timestamp: new Date().toISOString(),
             };
 
-            return success(res, statusData);
+            return success(res, statusData);  // Chamando função de sucesso
         } else {
-            return error(res, 'Method not allowed', 405);
+            return error(res, 'Method Not Allowed');  // Retornando erro caso o método não seja GET
         }
     } catch (err) {
-        return error(res, 'Internal Server Error', 500);
+        return error(res, 'Internal Server Error');
     }
 }
